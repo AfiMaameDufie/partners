@@ -12,5 +12,3 @@ if [[ $CIRCLE_BRANCH = ${DEPLOY_BRANCH} ]]; then
 else
   echo "Not a publishable branch so we're all done here"
 fi
-
-  node_modules/.bin/gh-pages -x -d _site -b gh-pages -r "https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git"
