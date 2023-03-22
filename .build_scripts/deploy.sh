@@ -6,8 +6,8 @@ if [[ $CIRCLE_BRANCH = ${DEPLOY_BRANCH} ]]; then
   echo "CIRCLE_BRANCH: "$CIRCLE_BRANCH
   echo "\$DEPLOY_BRANCH: " ${DEPLOY_BRANCH}
   echo "Get ready, we're pushing to branch!"
-  git config user.name "CIRCLECI"
-  git config user.email "circleci@somewhere.com"
+  git config user.name $USERNAME
+  git config user.email $EMAIL
   node_modules/.bin/gh-pages --dist _site --branch fix/deploy_script --repo $CIRCLE_REPOSITORY_URL
 else
   echo "Not a publishable branch so we're all done here"
