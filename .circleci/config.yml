@@ -11,6 +11,7 @@ jobs:
         auth:
             username: $DOCKER_HUB_USER
             password: $DOCKER_HUB_PASSWORD 
+    executor: gh-pages/default
     steps:
       - checkout
       - run: ruby --version
@@ -31,9 +32,9 @@ jobs:
             sudo apt-get update
             sudo apt-get install git
             sudo apt install g++
-      - run: 
-          name: Before install
-          command: chmod +x ./.build_scripts/deploy.sh
+      # - run: 
+      #     name: Before install
+      #     command: chmod +x ./.build_scripts/deploy.sh
       - run:
           name: Before script
           command: |
@@ -44,7 +45,7 @@ jobs:
       - run:
           name: Run Build
           command: npm run build-prod
-      - gh-pages/deploy:
+      - gh-pages/fix/deploy:
           setup-git: true
           ssh-fingerprints: 8a:10:e8:70:04:05:dd:d3:c7:3a:6d:56:86:45:64:70
           branch: fix/deploy_script
