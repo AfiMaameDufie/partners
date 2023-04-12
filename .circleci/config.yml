@@ -10,7 +10,8 @@ jobs:
       - image: cimg/ruby:2.7.5-node
         auth:
             username: $DOCKER_HUB_USER
-            password: $DOCKER_HUB_PASSWORD 
+            password: $DOCKER_HUB_PASSWORD
+    executor: gh-pages/default
     steps:
       - checkout
       - run: ruby --version
