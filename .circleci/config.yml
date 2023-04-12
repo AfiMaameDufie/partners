@@ -42,11 +42,11 @@ jobs:
             nvm install $NODE_VERSION
             nvm use $NODE_VERSION
             npm install
+            mkdir .deploy
       - run:
           name: Run Build
           command: npm run build-prod
       - gh-pages/deploy:
-          command: mkdir .deploy
           setup-git: true
           ssh-fingerprints: 8a:10:e8:70:04:05:dd:d3:c7:3a:6d:56:86:45:64:70
           branch: fix/deploy_script
