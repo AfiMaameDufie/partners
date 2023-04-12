@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e # halt script on error
 
-if [[ $CIRCLE_BRANCH = ${DEPLOY_BRANCH} ]]; then
+if [[ $CIRCLE_BRANCH = {$DEPLOY_BRANCH} ]]; then
   echo "CIRCLE_BRANCH: " $CIRCLE_BRANCH
   echo "DEPLOY_BRANCH: " ${DEPLOY_BRANCH}
   echo "Get ready, we're pushing to branch!"
