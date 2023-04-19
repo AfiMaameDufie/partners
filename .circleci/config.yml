@@ -4,7 +4,7 @@ orbs:
 
 # Define the jobs we want to run for this project
 jobs:
-  test-orb:
+  test:
     docker:
     # Primary container image where all steps run.
       - image: cimg/ruby:2.7.5-node
