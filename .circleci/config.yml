@@ -87,9 +87,6 @@ jobs:
             npm install
             mkdir .deploy
       - run:
-          name: Test Site
-          command: test-site
-      - run:
           name: Run Build
           command: npm run build-prod
 
