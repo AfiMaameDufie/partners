@@ -47,9 +47,6 @@ jobs:
           name: Run Build
           command: npm run build-prod
       
-      - run:
-          name: Test Site
-          command: test-site
   deploy:
     docker:
     # Primary container image where all steps run.
@@ -89,6 +86,9 @@ jobs:
             nvm use $NODE_VERSION
             npm install
             mkdir .deploy
+      - run:
+          name: Test Site
+          command: test-site
       - run:
           name: Run Build
           command: npm run build-prod
