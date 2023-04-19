@@ -46,9 +46,9 @@ jobs:
       - run:
           name: Run Build
           command: npm run build-prod
-      - run:
-          name: build site
-          command: build-site
+      # - run:
+      #     name: build site
+      #     command: build-site
           # setup-git: true
           # ssh-fingerprints: 8a:10:e8:70:04:05:dd:d3:c7:3a:6d:56:86:45:64:70
           # branch: fix/deploy_script
