@@ -58,4 +58,4 @@ workflows:
   version: 2
   test-orb:
     jobs:
-      - test-orb
+      - test
