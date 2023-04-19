@@ -46,12 +46,53 @@ jobs:
       - run:
           name: Run Build
           command: npm run build-prod
-      # - run:
-      #     name: build site
-      #     command: build-site
-          # setup-git: true
-          # ssh-fingerprints: 8a:10:e8:70:04:05:dd:d3:c7:3a:6d:56:86:45:64:70
-          # branch: fix/deploy_script
+      
+      - run:
+          name: Test Site
+          command: test-site
+  deploy:
+    docker:
+    # Primary container image where all steps run.
+      - image: cimg/ruby:2.7.5-node
+        auth:
+            username: $DOCKER_HUB_USER
+            password: $DOCKER_HUB_PASSWORD
+
+    steps:
+      - checkout
+      - run: ruby --version
+      - run: node --version
+      - run: 
+          name: Install nvm
+          command: |
+            sudo apt-get install curl
+            curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+            echo 'export NVM_DIR=$HOME/.nvm' >> $BASH_ENV
+            echo 'source ${NVM_DIR}/nvm.sh' --install >> $BASH_ENV
+      - run:
+          name: Build Node v8 nvm
+          command: nvm install 14.0
+      - run: 
+          name: Install dependencies
+          command: |
+            sudo apt-get update
+            sudo apt-get install git
+            sudo apt install g++
+      - run: 
+          name: Before install
+          command: chmod +x ./.build_scripts/deploy.sh
+      - run:
+          name: Before script
+          command: |
+            . $HOME/.nvm/nvm.sh
+            nvm install $NODE_VERSION
+            nvm use $NODE_VERSION
+            npm install
+            mkdir .deploy
+      - run:
+          name: Run Build
+          command: npm run build-prod
+
 
 # Orchestrate our job run sequence
 workflows:
@@ -59,3 +100,4 @@ workflows:
   test-orb:
     jobs:
       - test
+      - deploy
