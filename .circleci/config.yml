@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  gh-pages: sugarshin/gh-pages@1.0.1
+  github-pages-orb: fernfernfern/github-pages-orb@0.0.10
 
 # Define the jobs we want to run for this project
 jobs:
@@ -11,7 +11,7 @@ jobs:
         auth:
             username: $DOCKER_HUB_USER
             password: $DOCKER_HUB_PASSWORD
-    executor: gh-pages/default
+
     steps:
       - checkout
       - run: ruby --version
@@ -46,11 +46,12 @@ jobs:
       - run:
           name: Run Build
           command: npm run build-prod
-      - gh-pages/deploy:
-          tmp-dir: .deploy
-          setup-git: true
-          ssh-fingerprints: 8a:10:e8:70:04:05:dd:d3:c7:3a:6d:56:86:45:64:70
-          branch: fix/deploy_script
+      - run:
+          name: test site
+          command: test-site
+          # setup-git: true
+          # ssh-fingerprints: 8a:10:e8:70:04:05:dd:d3:c7:3a:6d:56:86:45:64:70
+          # branch: fix/deploy_script
 
 # Orchestrate our job run sequence
 workflows:
