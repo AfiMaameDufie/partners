@@ -12,6 +12,8 @@ jobs:
             username: $DOCKER_HUB_USER
             password: $DOCKER_HUB_PASSWORD
 
+    working_directory: ~/app
+
     steps:
       - checkout
       - run: ruby --version
@@ -54,6 +56,8 @@ jobs:
         auth:
             username: $DOCKER_HUB_USER
             password: $DOCKER_HUB_PASSWORD
+
+    working_directory: ~/app
 
     steps:
       - checkout
